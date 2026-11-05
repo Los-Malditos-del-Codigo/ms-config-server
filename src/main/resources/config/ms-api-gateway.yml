@@ -44,6 +44,7 @@ spring:
                 - Path=/api/v1/conversaciones-ia/**
 jwt:
   secret: ${JWT_SECRET}
+  issuer: ${JWT_ISSUER:servillantas-auth}
 management:
   endpoints:
     web:

@@ -27,6 +27,7 @@ spring:
       enabled: ${DEVTOOLS_ENABLED:false}
 app:
   auth:
+    allow-default-user: ${ALLOW_DEFAULT_USER:false}
     default-user-id: ${DEFAULT_USER_ID:35021bd0-6171-4b12-ad68-49250a1627f3}
 inventario:
   base-url: ${INVENTARIO_BASE_URL:http://localhost:8083}

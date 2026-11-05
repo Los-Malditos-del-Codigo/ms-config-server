@@ -1,13 +1,26 @@
-# ms-config-server
+# MS Config Server
 
-Servidor de configuración centralizada de Servillantas RV con backend nativo versionado en `src/main/resources/config`.
+Servidor central de configuración de Servillantas, basado en Spring Cloud Config con repositorio nativo incluido en `src/main/resources/config`.
 
-- Puerto por defecto: `8888`
-- Health: `/actuator/health`
-- Ejemplo: `/ms-api-gateway/default`
+## Responsabilidades
 
-Este es el primer componente que debe arrancar. Su configuración de bootstrap permanece local para evitar una dependencia circular; toda la configuración operativa de Eureka, Gateway y los microservicios reside en `src/main/resources/config`.
+- Entrega una configuración común (`application.yml`) y una específica por servicio.
+- Centraliza puertos, Eureka, pools de conexión, JPA, rutas del gateway, JWT e integraciones.
+- Mantiene secretos fuera del repositorio mediante variables de entorno.
+- Falla al arrancar un servicio si faltan variables obligatorias como credenciales de base de datos o `JWT_SECRET`.
 
-Las credenciales no se almacenan en Git: los perfiles centrales conservan referencias a variables de entorno como `SPRING_DATASOURCE_URL`, `DB_USER`, `DB_PASSWORD` y `JWT_SECRET`.
+## Uso
 
-Orden de arranque: Config Server, Eureka Server, microservicios y API Gateway.
+Arranca en el puerto `8888`. Ejemplos de consulta:
+
+```text
+GET http://localhost:8888/ms-ventas/default
+GET http://localhost:8888/msvc-inventario/default
+```
+
+Debe iniciarse antes que Eureka, gateway y servicios de negocio.
+
+```bash
+./mvnw test
+./mvnw spring-boot:run
+```

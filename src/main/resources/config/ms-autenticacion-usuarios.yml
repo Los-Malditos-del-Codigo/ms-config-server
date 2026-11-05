@@ -31,12 +31,17 @@ spring:
 jwt:
   secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION:3600000}
+  issuer: ${JWT_ISSUER:servillantas-auth}
 app:
   security:
+    registration:
+      allowed-role: ${REGISTRATION_ALLOWED_ROLE:PERSONAL}
     login:
       max-attempts: ${LOGIN_MAX_ATTEMPTS:5}
       window-minutes: ${LOGIN_WINDOW_MINUTES:15}
       lock-minutes: ${LOGIN_LOCK_MINUTES:15}
+    refresh:
+      expiration-days: ${REFRESH_TOKEN_EXPIRATION_DAYS:30}
 logging:
   level:
     root: INFO
