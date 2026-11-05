@@ -20,6 +20,11 @@ GET http://localhost:8888/msvc-inventario/default
 
 Debe iniciarse antes que Eureka, gateway y servicios de negocio.
 
+Para Supabase, `SPRING_DATASOURCE_URL` debe usar el pool transaccional en el
+puerto `6543`. La configuración central desactiva los prepared statements del
+driver (`DB_PREPARE_THRESHOLD=0`) y limita cada servicio a una conexión para
+evitar agotar el pool compartido.
+
 ```bash
 ./mvnw test
 ./mvnw spring-boot:run
