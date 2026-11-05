@@ -1,2 +1,28 @@
-server.port: ${SERVER_PORT:8085}
-inventario.base-url: ${INVENTARIO_BASE_URL:http://localhost:8083}
+server:
+  port: ${SERVER_PORT:8085}
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: MSVentasHikariPool
+      maximum-pool-size: ${DB_MAX_POOL_SIZE:10}
+      minimum-idle: ${DB_MIN_IDLE:2}
+      connection-timeout: ${DB_CONNECTION_TIMEOUT:30000}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: ${JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+app:
+  auth:
+    default-user-id: ${DEFAULT_USER_ID:35021bd0-6171-4b12-ad68-49250a1627f3}
+inventario:
+  base-url: ${INVENTARIO_BASE_URL:http://localhost:8083}
+  stub: ${INVENTARIO_STUB:false}

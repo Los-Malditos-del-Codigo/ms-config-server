@@ -1,1 +1,51 @@
-server.port: ${SERVER_PORT:8080}
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: ms-autenticacion
+              uri: lb://ms-autenticacion-usuarios
+              predicates:
+                - Path=/api/v1/auth/**
+            - id: ms-productos
+              uri: lb://msvc-producto
+              predicates:
+                - Path=/api/v1/productos/**,/api/v1/marcas/**,/api/v1/categorias/**,/api/v1/unidades-medida/**
+            - id: ms-inventario
+              uri: lb://msvc-inventario
+              predicates:
+                - Path=/api/v1/inventarios/**,/api/v1/inventario/**,/api/v1/movimientos-inventario/**,/api/v1/ajustes-inventario/**
+            - id: ms-compras
+              uri: lb://ms-compras
+              predicates:
+                - Path=/api/v1/compras/**,/api/v1/proveedores/**
+            - id: ms-ventas
+              uri: lb://ms-ventas
+              predicates:
+                - Path=/api/v1/ventas/**
+            - id: ms-servicios
+              uri: lb://ms-servicios
+              predicates:
+                - Path=/api/v1/servicios/**,/api/v1/tipos-servicio/**
+            - id: ms-alertas-notificaciones
+              uri: lb://ms-alertas-notificaciones
+              predicates:
+                - Path=/api/v1/alertas/**,/api/v1/notificaciones/**
+            - id: ms-reportes
+              uri: lb://ms-reportes
+              predicates:
+                - Path=/api/v1/reportes/**
+            - id: ms-asistente-ia
+              uri: lb://ms-asistente-ia
+              predicates:
+                - Path=/api/v1/conversaciones-ia/**
+jwt:
+  secret: ${JWT_SECRET}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

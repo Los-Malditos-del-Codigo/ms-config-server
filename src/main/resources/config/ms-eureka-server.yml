@@ -1,0 +1,14 @@
+server:
+  port: ${EUREKA_SERVER_PORT:8761}
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
+  client:
+    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    default-open-for-traffic-count: 0
+    enable-self-preservation: ${EUREKA_SELF_PRESERVATION:true}
