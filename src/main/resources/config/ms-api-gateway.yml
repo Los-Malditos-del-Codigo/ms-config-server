@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${MS_API_GATEWAY_PORT:${SERVER_PORT:8080}}
 spring:
   cloud:
     gateway:

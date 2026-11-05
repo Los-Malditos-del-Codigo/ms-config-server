@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8089}
+  port: ${MS_ASISTENTE_IA_PORT:${SERVER_PORT:8089}}
 spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL}

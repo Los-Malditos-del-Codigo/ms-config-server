@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8088}
+  port: ${MS_REPORTES_PORT:${SERVER_PORT:8088}}
 spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL}

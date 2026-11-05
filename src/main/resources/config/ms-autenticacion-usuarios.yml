@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8081}
+  port: ${MS_AUTENTICACION_USUARIOS_PORT:${SERVER_PORT:8081}}
   error:
     include-message: never
     include-binding-errors: never

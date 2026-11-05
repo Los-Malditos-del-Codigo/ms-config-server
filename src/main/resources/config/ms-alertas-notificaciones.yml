@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8087}
+  port: ${MS_ALERTAS_NOTIFICACIONES_PORT:${SERVER_PORT:8087}}
 spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL}
